@@ -116,9 +116,9 @@ namespace personalFinanceManager.viewmodels
                 var incomes = await _repository.GetItems();
                 Incomes.Clear();
 
-                foreach (var income in incomes)
+                for (var i = incomes.Count - 1; i >= 0; i--)
                 {
-                    Incomes.Add(income);
+                    Incomes.Add(incomes[i]);
                 }
 
                 IsBusy = false;
