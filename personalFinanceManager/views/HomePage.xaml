@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="personalFinanceManager.views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:icons="clr-namespace:personalFinanceManager.assets.FontAwesomeIcons"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="Auto, Auto, Auto">
+        <StackLayout
+            Margin="0,0,0,16"
+            BackgroundColor="{StaticResource FontColorOne}"
+            HeightRequest="300"
+            VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource BodyLabelStyle}"
+                    Text="Your balance:" />
+
+                <Label
+                    Margin="0,-8,0,0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource TitleLabelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="fa-solid"
+                                FontSize="{StaticResource SubtitleFontSize2}"
+                                Text="{x:Static icons:FontAwesomeIcons.Coins}"
+                                TextColor="{StaticResource FontColorTwo}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Balance, StringFormat='{0:C2}'}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <BoxView
+                    Margin="{StaticResource SpacingSmallLRTB}"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    HeightRequest="{StaticResource BorderWidth}"
+                    Opacity="{StaticResource OpacityLow}" />
+                <Grid
+                    Margin="0"
+                    ColumnDefinitions="Auto, Auto, Auto"
+                    HorizontalOptions="Center">
+                    <!--<Image
+                        HeightRequest="64"
+                        Source="chart.png"
+                        WidthRequest="64" />-->
+
+                    <microcharts:ChartView
+                        Chart="{Binding Chart}"
+                        HeightRequest="80"
+                        WidthRequest="80" />
+                    <Label
+                        Grid.Column="1"
+                        CharacterSpacing="{StaticResource BodyLetterSpacing}"
+                        FontSize="{StaticResource BodyFontSize}"
+                        Style="{StaticResource SubTitleLabelStyle}"
+                        Text="Total Savings"
+                        VerticalOptions="Center" />
+                    <pancake:PancakeView
+                        Grid.Column="2"
+                        Margin="{StaticResource SpacingSuperSmall}"
+                        BackgroundColor="{StaticResource BackGroundColorWithAlpha}"
+                        CornerRadius="{StaticResource CornerRadius}"
+                        HeightRequest="32"
+                        VerticalOptions="Center"
+                        WidthRequest="72">
+                        <Label
+                            FontSize="{StaticResource BodyFontSize}"
+                            HorizontalTextAlignment="Center"
+                            Opacity="1"
+                            Style="{StaticResource SubTitleLabelStyle}"
+                            Text="{Binding TotalSavings, StringFormat='{0:C2}'}"
+                            TextColor="{StaticResource WhiteColor}"
+                            VerticalOptions="Center" />
+                    </pancake:PancakeView>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Margin="{StaticResource SpacingSmallLeftRight}">
+                <pancake:PancakeView
+                    Margin="{StaticResource SpacingSuperSmallTopBotton}"
+                    Padding="{StaticResource SpacingSmallLRTB2}"
+                    BackgroundColor="#1F8E93C0"
+                    CornerRadius="{StaticResource CornerRadius}"
+                    HeightRequest="{StaticResource CardHeight}">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListIncomeCommand}" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+
+                        <pancake:PancakeView
+                            BackgroundColor="#CD8944"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            OffsetAngle="45"
+                            Shadow="{pancake:ShadowMarkup Color=#54131314,
+                                                          Offset='10,10',
+                                                          BlurRadius=4}"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <ImageButton
+                                Padding="{StaticResource SpacingSuperSmall}"
+                                BackgroundColor="Transparent"
+                                Command="{Binding AddIncome}"
+                                HeightRequest="{StaticResource IconContainerSize}"
+                                WidthRequest="{StaticResource IconContainerSize}">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="fa-solid"
+                                        Glyph="{x:Static icons:FontAwesomeIcons.Plus}"
+                                        Size="{StaticResource ButtonFontSize}"
+                                        Color="{StaticResource PrimaryColor}" />
+                                </ImageButton.Source>
+                            </ImageButton>
+                        </pancake:PancakeView>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Label FontAttributes="Bold" Style="{StaticResource BodyLabelStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="fa-solid"
+                                            FontSize="{StaticResource BodyFontSize}"
+                                            Text="{x:Static icons:FontAwesomeIcons.Wallet}"
+                                            TextColor="#CD8944" />
+                                        <Span Text=" " />
+                                        <Span
+                                            FontFamily="OpenSansSemiBoldFont"
+                                            Style="{StaticResource BodyLabelStyle}"
+                                            Text="Income"
+                                            TextColor="#CD8944" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label
+                                Margin="0,-8,0,0"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding TotalIncome, StringFormat='{0:C2}'}"
+                                TextColor="{StaticResource FontColorOne}" />
+                        </StackLayout>
+                        <ImageButton
+                            Grid.Column="2"
+                            Padding="{StaticResource SpacingSuperSmall}"
+                            BackgroundColor="Transparent"
+                            HeightRequest="32"
+                            VerticalOptions="Center"
+                            WidthRequest="32">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="fa-solid"
+                                    Glyph="{x:Static icons:FontAwesomeIcons.ChevronRight}"
+                                    Size="14"
+                                    Color="{StaticResource FontColorOne}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                    </Grid>
+                </pancake:PancakeView>
+                <pancake:PancakeView
+                    Margin="{StaticResource SpacingSuperSmallTopBotton}"
+                    Padding="{StaticResource SpacingSmallLRTB2}"
+                    BackgroundColor="#1F8E93C0"
+                    CornerRadius="{StaticResource CornerRadius}"
+                    HeightRequest="{StaticResource CardHeight}">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListExpensesCommand}" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+
+                        <pancake:PancakeView
+                            BackgroundColor="#D44A6E"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            OffsetAngle="45"
+                            Shadow="{pancake:ShadowMarkup Color=#54000000,
+                                                          Offset='10,10',
+                                                          BlurRadius=4}"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <ImageButton
+                                Padding="{StaticResource SpacingSuperSmall}"
+                                BackgroundColor="Transparent"
+                                Command="{Binding AddExpense}"
+                                HeightRequest="{StaticResource IconContainerSize}"
+                                WidthRequest="{StaticResource IconContainerSize}">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="fa-solid"
+                                        Glyph="{x:Static icons:FontAwesomeIcons.Plus}"
+                                        Size="{StaticResource ButtonFontSize}"
+                                        Color="{StaticResource PrimaryColor}" />
+                                </ImageButton.Source>
+                            </ImageButton>
+                        </pancake:PancakeView>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Label FontAttributes="Bold" Style="{StaticResource BodyLabelStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="fa-solid"
+                                            FontSize="{StaticResource BodyFontSize}"
+                                            Text="{x:Static icons:FontAwesomeIcons.MoneyBill}"
+                                            TextColor="#D44A6E" />
+                                        <Span Text=" " />
+                                        <Span
+                                            FontFamily="OpenSansSemiBoldFont"
+                                            Style="{StaticResource BodyLabelStyle}"
+                                            Text="Expenses"
+                                            TextColor="#D44A6E" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label
+                                Margin="0,-8,0,0"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding TotalExpenses, StringFormat='{0:C2}'}"
+                                TextColor="{StaticResource FontColorOne}" />
+                        </StackLayout>
+                        <ImageButton
+                            Grid.Column="2"
+                            Padding="{StaticResource SpacingSuperSmall}"
+                            BackgroundColor="Transparent"
+                            HeightRequest="32"
+                            VerticalOptions="Center"
+                            WidthRequest="32">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="fa-solid"
+                                    Glyph="{x:Static icons:FontAwesomeIcons.ChevronRight}"
+                                    Size="14"
+                                    Color="{StaticResource FontColorOne}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                    </Grid>
+                </pancake:PancakeView>
+                <pancake:PancakeView
+                    Margin="{StaticResource SpacingSuperSmallTopBotton}"
+                    Padding="{StaticResource SpacingSmallLRTB2}"
+                    BackgroundColor="#1F8E93C0"
+                    CornerRadius="{StaticResource CornerRadius}"
+                    HeightRequest="{StaticResource CardHeight}">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListSavingsCommand}" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+
+                        <pancake:PancakeView
+                            BackgroundColor="#7C63A5"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            OffsetAngle="45"
+                            Shadow="{pancake:ShadowMarkup Color=#54131314,
+                                                          Offset='10,10',
+                                                          BlurRadius=4}"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <ImageButton
+                                Padding="{StaticResource SpacingSuperSmall}"
+                                BackgroundColor="Transparent"
+                                Command="{Binding AddSaving}"
+                                HeightRequest="{StaticResource IconContainerSize}"
+                                WidthRequest="{StaticResource IconContainerSize}">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="fa-solid"
+                                        Glyph="{x:Static icons:FontAwesomeIcons.Plus}"
+                                        Size="{StaticResource ButtonFontSize}"
+                                        Color="{StaticResource PrimaryColor}" />
+                                </ImageButton.Source>
+                            </ImageButton>
+                        </pancake:PancakeView>
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Label FontAttributes="Bold" Style="{StaticResource BodyLabelStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="fa-solid"
+                                            FontSize="{StaticResource BodyFontSize}"
+                                            Text="{x:Static icons:FontAwesomeIcons.PiggyBank}"
+                                            TextColor="#7C63A5" />
+                                        <Span Text=" " />
+                                        <Span
+                                            FontFamily="OpenSansSemiBoldFont"
+                                            Style="{StaticResource BodyLabelStyle}"
+                                            Text="Savings"
+                                            TextColor="#7C63A5" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label
+                                Margin="0,-8,0,0"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding TotalSavings, StringFormat='{0:C2}'}"
+                                TextColor="{StaticResource FontColorOne}" />
+                        </StackLayout>
+                        <ImageButton
+                            Grid.Column="2"
+                            Padding="{StaticResource SpacingSuperSmall}"
+                            BackgroundColor="Transparent"
+                            HeightRequest="32"
+                            VerticalOptions="Center"
+                            WidthRequest="32">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="fa-solid"
+                                    Glyph="{x:Static icons:FontAwesomeIcons.ChevronRight}"
+                                    Size="14"
+                                    Color="{StaticResource FontColorOne}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                    </Grid>
+                </pancake:PancakeView>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<autofac:PrismApplication
+    x:Class="personalFinanceManager.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:autofac="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
+    <Application.Resources>
+
+        <!--  Font Sizes  -->
+        <x:Double x:Key="HeadlineFontSize">48</x:Double>
+        <x:Double x:Key="TitleFontSize">28</x:Double>
+        <x:Double x:Key="SubtitleFontSize">24</x:Double>
+        <x:Double x:Key="SubtitleFontSize2">20</x:Double>
+        <x:Double x:Key="BodyFontSize">16</x:Double>
+        <x:Double x:Key="ButtonFontSize">14</x:Double>
+        <x:Double x:Key="SmallFontSize">12</x:Double>
+
+        <!--  Spacing  -->
+        <Thickness x:Key="SpacingSuperSmall">8</Thickness>
+        <Thickness x:Key="SpacingSmall">16</Thickness>
+        <Thickness x:Key="SpacingMedium">24</Thickness>
+        <Thickness x:Key="SpacingLarge">32</Thickness>
+        <Thickness x:Key="SpacingSuperSmallTopBotton">0,8</Thickness>
+        <Thickness x:Key="SpacingSuperSmallLeftRight">8,0</Thickness>
+        <Thickness x:Key="SpacingSmallTopBotton">0,16</Thickness>
+        <Thickness x:Key="SpacingSmallLeftRight">16,0</Thickness>
+        <Thickness x:Key="SpacingSmallLRTB">16,12</Thickness>
+        <Thickness x:Key="SpacingSmallLRTB2">16,8</Thickness>
+        <Thickness x:Key="IOSSafeArea">0,44,0,44</Thickness>
+
+        <x:Double x:Key="BorderWidth">1</x:Double>
+        <x:Double x:Key="ButtonMinimumWidthRequest">64</x:Double>
+        <x:Double x:Key="ButtonMinimumHeightRequest">36</x:Double>
+        <x:Double x:Key="CornerRadius">8</x:Double>
+        <x:Double x:Key="CornerRadiusMd">4</x:Double>
+        <x:Double x:Key="IconContainerSize">40</x:Double>
+        <x:Double x:Key="CardHeight">62</x:Double>
+        <x:Double x:Key="CardHeight2">62</x:Double>
+
+        <x:Double x:Key="TitleLetterSpacing">0.25</x:Double>
+        <x:Double x:Key="BodyLetterSpacing">0.5</x:Double>
+        <x:Double x:Key="ButtonLetterSpacing">1.25</x:Double>
+
+        <x:Double x:Key="OpacityHigh">0.8</x:Double>
+        <x:Double x:Key="OpacityMedium">0.6</x:Double>
+        <x:Double x:Key="OpacityLow">0.3</x:Double>
+
+        <!--  Colors  -->
+        <Color x:Key="PrimaryColor">#E5E2EE</Color>
+        <Color x:Key="FontColorOne">#161A2E</Color>
+        <Color x:Key="FontColorTwo">#969FB2</Color>
+        <Color x:Key="WhiteColor">#FFFFFF</Color>
+        <Color x:Key="BackGroundColorWithAlpha">#4D969FB2</Color>
+        <Color x:Key="CardBackgroundColor">#5454CB</Color>
+        <Color x:Key="DeleteColor">#C10606</Color>
+
+        <!--  Gradient Colors  -->
+        <Color x:Key="GradientColorOne">#161A2E</Color>
+        <Color x:Key="GradientColorTwo">#055271</Color>
+        <Color x:Key="GradientColorThree">#3F4C79</Color>
+
+
+        <!--  Font Styles  -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansRegularFont" />
+            <Setter Property="FontSize" Value="{StaticResource HeadlineFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        </Style>
+
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansRegularFont" />
+            <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            <Setter Property="CharacterSpacing" Value="{StaticResource TitleLetterSpacing}" />
+        </Style>
+
+        <Style x:Key="SubTitleLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansSemiBoldFont" />
+            <Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource FontColorTwo}" />
+        </Style>
+
+        <Style x:Key="BodyLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="OpenSansRegularFont" />
+            <Setter Property="FontSize" Value="{StaticResource BodyFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource FontColorTwo}" />
+            <Setter Property="CharacterSpacing" Value="{StaticResource BodyLetterSpacing}" />
+        </Style>
+
+        <!--  FontAwesome Icons  -->
+        <Style x:Key="PrimaryFontIcons" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+            <Setter Property="Margin" Value="{StaticResource SpacingSuperSmall}" />
+        </Style>
+
+        <Style x:Key="SecondaryFontIcons" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource SubtitleFontSize2}" />
+            <Setter Property="TextColor" Value="{StaticResource FontColorTwo}" />
+            <Setter Property="Margin" Value="{StaticResource SpacingSuperSmall}" />
+        </Style>
+
+        <!--  Button Styles  -->
+        <Style x:Key="FilledButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="OpenSansSemiBoldFont" />
+            <Setter Property="TextColor" Value="{StaticResource FontColorTwo}" />
+            <Setter Property="TextTransform" Value="Uppercase" />
+            <Setter Property="FontSize" Value="{StaticResource ButtonFontSize}" />
+            <Setter Property="CharacterSpacing" Value="{StaticResource ButtonLetterSpacing}" />
+            <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+            <Setter Property="Padding" Value="{StaticResource SpacingSmallLRTB}" />
+            <Setter Property="MinimumWidthRequest" Value="{StaticResource ButtonMinimumWidthRequest}" />
+            <Setter Property="MinimumHeightRequest" Value="{StaticResource ButtonMinimumHeightRequest}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource FontColorOne}" />
+        </Style>
+
+    </Application.Resources>
+</autofac:PrismApplication>
