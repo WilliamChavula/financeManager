@@ -7,173 +7,175 @@
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     NavigationPage.HasNavigationBar="False">
     <AbsoluteLayout>
-        <Grid
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            RowDefinitions="Auto, *">
-            <pancake:PancakeView
-                BackgroundColor="{StaticResource FontColorOne}"
-                BackgroundGradientEndPoint="0,1"
-                BackgroundGradientStartPoint="0,0"
-                HeightRequest="250">
-                <pancake:PancakeView.BackgroundGradientStops>
-                    <pancake:GradientStopCollection>
-                        <pancake:GradientStop Offset="0" Color="{StaticResource GradientColorOne}" />
-                        <pancake:GradientStop Offset="0.3" Color="{StaticResource GradientColorOne}" />
-                        <pancake:GradientStop Offset="1" Color="{StaticResource GradientColorThree}" />
-                    </pancake:GradientStopCollection>
-                </pancake:PancakeView.BackgroundGradientStops>
-                <Grid RowDefinitions="Auto, *">
-                    <ImageButton
-                        Margin="{StaticResource SpacingSmallTopBotton}"
-                        Padding="{StaticResource SpacingSuperSmall}"
-                        BackgroundColor="Transparent"
-                        Command="{Binding GoBack}"
-                        HeightRequest="{StaticResource IconContainerSize}"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        WidthRequest="{StaticResource IconContainerSize}">
-                        <ImageButton.Source>
-                            <FontImageSource
-                                FontFamily="fa-solid"
-                                Glyph="{x:Static icons:FontAwesomeIcons.ChevronLeft}"
-                                Size="{StaticResource ButtonFontSize}"
-                                Color="{StaticResource PrimaryColor}" />
-                        </ImageButton.Source>
-                    </ImageButton>
-                    <StackLayout
-                        Grid.Row="1"
-                        Margin="{StaticResource SpacingSmallTopBotton}"
-                        HorizontalOptions="Center">
-                        <Label
-                            FontSize="{StaticResource ButtonFontSize}"
-                            Style="{StaticResource SubTitleLabelStyle}"
-                            Text="Total Savings" />
-                        <Label
-                            Margin="0,-8,0,0"
-                            FontSize="40"
-                            Style="{StaticResource TitleLabelStyle}"
-                            Text="{Binding TotalSavingsAmount, StringFormat='{0:C2}'}"
-                            TextColor="{StaticResource PrimaryColor}" />
-                    </StackLayout>
-                </Grid>
-            </pancake:PancakeView>
+        <ScrollView>
             <Grid
-                Grid.Row="1"
-                Padding="{StaticResource SpacingSmall}"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
                 RowDefinitions="Auto, *">
-                <Label
-                    Style="{StaticResource SubTitleLabelStyle}"
-                    Text="Transactions"
-                    TextColor="{StaticResource FontColorOne}" />
-
-                <CollectionView
-                    x:Name="collectionView"
+                <pancake:PancakeView
+                    BackgroundColor="{StaticResource FontColorOne}"
+                    BackgroundGradientEndPoint="0,1"
+                    BackgroundGradientStartPoint="0,0"
+                    HeightRequest="250">
+                    <pancake:PancakeView.BackgroundGradientStops>
+                        <pancake:GradientStopCollection>
+                            <pancake:GradientStop Offset="0" Color="{StaticResource GradientColorOne}" />
+                            <pancake:GradientStop Offset="0.3" Color="{StaticResource GradientColorOne}" />
+                            <pancake:GradientStop Offset="1" Color="{StaticResource GradientColorThree}" />
+                        </pancake:GradientStopCollection>
+                    </pancake:PancakeView.BackgroundGradientStops>
+                    <Grid RowDefinitions="Auto, *">
+                        <ImageButton
+                            Margin="{StaticResource SpacingSmallTopBotton}"
+                            Padding="{StaticResource SpacingSuperSmall}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding GoBack}"
+                            HeightRequest="{StaticResource IconContainerSize}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            WidthRequest="{StaticResource IconContainerSize}">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="fa-solid"
+                                    Glyph="{x:Static icons:FontAwesomeIcons.ChevronLeft}"
+                                    Size="{StaticResource ButtonFontSize}"
+                                    Color="{StaticResource PrimaryColor}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                        <StackLayout
+                            Grid.Row="1"
+                            Margin="{StaticResource SpacingSmallTopBotton}"
+                            HorizontalOptions="Center">
+                            <Label
+                                FontSize="{StaticResource ButtonFontSize}"
+                                Style="{StaticResource SubTitleLabelStyle}"
+                                Text="Total Savings" />
+                            <Label
+                                Margin="0,-8,0,0"
+                                FontSize="40"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding TotalSavingsAmount, StringFormat='{0:C2}'}"
+                                TextColor="{StaticResource PrimaryColor}" />
+                        </StackLayout>
+                    </Grid>
+                </pancake:PancakeView>
+                <Grid
                     Grid.Row="1"
-                    ItemsSource="{Binding Savings}">
+                    Padding="{StaticResource SpacingSmall}"
+                    RowDefinitions="Auto, *">
+                    <Label
+                        Style="{StaticResource SubTitleLabelStyle}"
+                        Text="Transactions"
+                        TextColor="{StaticResource FontColorOne}" />
 
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="12" Orientation="Vertical" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItems Mode="Execute">
-                                        <SwipeItemView Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteSavingItemCommand}" CommandParameter="{Binding}">
-                                            <StackLayout
-                                                BackgroundColor="{StaticResource DeleteColor}"
-                                                HeightRequest="68"
-                                                WidthRequest="64">
-                                                <ImageButton
-                                                    Padding="{StaticResource SpacingSuperSmallLeftRight}"
+                    <CollectionView
+                        x:Name="collectionView"
+                        Grid.Row="1"
+                        ItemsSource="{Binding Savings}">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="12" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Execute">
+                                            <SwipeItemView Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteSavingItemCommand}" CommandParameter="{Binding}">
+                                                <StackLayout
                                                     BackgroundColor="{StaticResource DeleteColor}"
+                                                    HeightRequest="68"
+                                                    WidthRequest="64">
+                                                    <ImageButton
+                                                        Padding="{StaticResource SpacingSuperSmallLeftRight}"
+                                                        BackgroundColor="{StaticResource DeleteColor}"
+                                                        HeightRequest="{StaticResource IconContainerSize}"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        WidthRequest="{StaticResource IconContainerSize}">
+                                                        <ImageButton.Source>
+                                                            <FontImageSource
+                                                                FontFamily="fa-solid"
+                                                                Glyph="{x:Static icons:FontAwesomeIcons.Trash}"
+                                                                Size="{StaticResource BodyFontSize}"
+                                                                Color="{StaticResource PrimaryColor}" />
+                                                        </ImageButton.Source>
+                                                    </ImageButton>
+                                                </StackLayout>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <pancake:PancakeView
+                                        Padding="{StaticResource SpacingSuperSmall}"
+                                        BackgroundColor="White"
+                                        CornerRadius="{StaticResource CornerRadius}"
+                                        HeightRequest="{StaticResource CardHeight2}">
+                                        <pancake:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.SelectSavingItemCommand}" CommandParameter="{Binding}" />
+                                        </pancake:PancakeView.GestureRecognizers>
+                                        <Grid ColumnDefinitions="Auto, *, Auto">
+                                            <pancake:PancakeView
+                                                BackgroundColor="{StaticResource FontColorOne}"
+                                                CornerRadius="20"
+                                                HeightRequest="{StaticResource IconContainerSize}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="{StaticResource IconContainerSize}">
+                                                <ImageButton
+                                                    Padding="{StaticResource SpacingSuperSmall}"
+                                                    BackgroundColor="Transparent"
                                                     HeightRequest="{StaticResource IconContainerSize}"
-                                                    HorizontalOptions="Center"
-                                                    VerticalOptions="CenterAndExpand"
                                                     WidthRequest="{StaticResource IconContainerSize}">
                                                     <ImageButton.Source>
                                                         <FontImageSource
                                                             FontFamily="fa-solid"
-                                                            Glyph="{x:Static icons:FontAwesomeIcons.Trash}"
-                                                            Size="{StaticResource BodyFontSize}"
+                                                            Glyph="{x:Static icons:FontAwesomeIcons.PiggyBank}"
+                                                            Size="{StaticResource ButtonFontSize}"
                                                             Color="{StaticResource PrimaryColor}" />
                                                     </ImageButton.Source>
                                                 </ImageButton>
+                                            </pancake:PancakeView>
+                                            <StackLayout
+                                                Grid.Column="1"
+                                                Margin="{StaticResource SpacingSmallLeftRight}"
+                                                InputTransparent="True"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontFamily="OpenSansSemiBoldFont"
+                                                    Style="{StaticResource BodyLabelStyle}"
+                                                    Text="{Binding SavingAmount, StringFormat='{0:C2}'}"
+                                                    TextColor="{StaticResource FontColorOne}" />
+                                                <Label
+                                                    Margin="0,-8,0,0"
+                                                    FontSize="{StaticResource SmallFontSize}"
+                                                    Style="{StaticResource BodyLabelStyle}"
+                                                    Text="{Binding SavingDate, StringFormat='{0:D}'}"
+                                                    TextColor="{StaticResource FontColorOne}" />
                                             </StackLayout>
-                                        </SwipeItemView>
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
-                                <pancake:PancakeView
-                                    Padding="{StaticResource SpacingSuperSmall}"
-                                    BackgroundColor="White"
-                                    CornerRadius="{StaticResource CornerRadius}"
-                                    HeightRequest="{StaticResource CardHeight2}">
-                                    <pancake:PancakeView.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.SelectSavingItemCommand}" CommandParameter="{Binding}" />
-                                    </pancake:PancakeView.GestureRecognizers>
-                                    <Grid ColumnDefinitions="Auto, *, Auto">
-                                        <pancake:PancakeView
-                                            BackgroundColor="{StaticResource FontColorOne}"
-                                            CornerRadius="20"
-                                            HeightRequest="{StaticResource IconContainerSize}"
-                                            VerticalOptions="Center"
-                                            WidthRequest="{StaticResource IconContainerSize}">
-                                            <ImageButton
-                                                Padding="{StaticResource SpacingSuperSmall}"
-                                                BackgroundColor="Transparent"
-                                                HeightRequest="{StaticResource IconContainerSize}"
-                                                WidthRequest="{StaticResource IconContainerSize}">
-                                                <ImageButton.Source>
-                                                    <FontImageSource
-                                                        FontFamily="fa-solid"
-                                                        Glyph="{x:Static icons:FontAwesomeIcons.PiggyBank}"
-                                                        Size="{StaticResource ButtonFontSize}"
-                                                        Color="{StaticResource PrimaryColor}" />
-                                                </ImageButton.Source>
-                                            </ImageButton>
-                                        </pancake:PancakeView>
-                                        <StackLayout
-                                            Grid.Column="1"
-                                            Margin="{StaticResource SpacingSmallLeftRight}"
-                                            InputTransparent="True"
-                                            VerticalOptions="Center">
                                             <Label
-                                                FontAttributes="Bold"
-                                                FontFamily="OpenSansSemiBoldFont"
+                                                Grid.Column="2"
+                                                Margin="0,0,8,0"
+                                                CharacterSpacing="1.25"
                                                 Style="{StaticResource BodyLabelStyle}"
-                                                Text="{Binding SavingAmount, StringFormat='{0:C2}'}"
-                                                TextColor="{StaticResource FontColorOne}" />
-                                            <Label
-                                                Margin="0,-8,0,0"
-                                                FontSize="{StaticResource SmallFontSize}"
-                                                Style="{StaticResource BodyLabelStyle}"
-                                                Text="{Binding SavingDate, StringFormat='{0:D}'}"
-                                                TextColor="{StaticResource FontColorOne}" />
-                                        </StackLayout>
-                                        <Label
-                                            Grid.Column="2"
-                                            Margin="0,0,8,0"
-                                            CharacterSpacing="1.25"
-                                            Style="{StaticResource BodyLabelStyle}"
-                                            Text="Saved"
-                                            TextColor="{StaticResource FontColorOne}"
-                                            TextTransform="Uppercase"
-                                            VerticalOptions="Center" />
-                                    </Grid>
-                                </pancake:PancakeView>
-                            </SwipeView>
+                                                Text="Saved"
+                                                TextColor="{StaticResource FontColorOne}"
+                                                TextTransform="Uppercase"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                </SwipeView>
 
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <ActivityIndicator
-                    Grid.Row="1"
-                    IsRunning="{Binding IsBusy}"
-                    VerticalOptions="Center"
-                    Color="{StaticResource FontColorOne}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <ActivityIndicator
+                        Grid.Row="1"
+                        IsRunning="{Binding IsBusy}"
+                        VerticalOptions="Center"
+                        Color="{StaticResource FontColorOne}" />
+                </Grid>
             </Grid>
-        </Grid>
+        </ScrollView>
         <pancake:PancakeView
             AbsoluteLayout.LayoutBounds="0.95, 0.95, AutoSize, AutoSize"
             AbsoluteLayout.LayoutFlags="PositionProportional"
