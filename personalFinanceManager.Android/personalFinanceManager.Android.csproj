@@ -34,14 +34,16 @@
 		<AndroidLinkMode>None</AndroidLinkMode>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>portable</DebugType>
+		<DebugType></DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release</OutputPath>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<AndroidManagedSymbols>true</AndroidManagedSymbols>
 		<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+		<AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+		<AndroidUseAapt2>true</AndroidUseAapt2>
+		<AndroidDexTool>d8</AndroidDexTool>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Mono.Android" />

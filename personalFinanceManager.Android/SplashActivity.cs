@@ -5,7 +5,7 @@ using Android.OS;
 
 namespace personalFinanceManager.Droid
 {
-    [Activity(Label = "SplashActivity", Theme = "@style/MyTheme.Splash", MainLauncher = true)]
+    [Activity(Label = "Stashr", Theme = "@style/MyTheme.Splash", MainLauncher = true)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

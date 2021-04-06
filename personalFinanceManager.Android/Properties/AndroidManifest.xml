@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.williamroosevelt.personalfinancemanager">
-	<uses-sdk android:minSdkVersion="25" android:targetSdkVersion="29" />
-	<application android:label="Stashr" android:theme="@style/MainTheme"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="com.williamroosevelt.personalfinancemanager" android:versionCode="3">
+	<uses-sdk android:minSdkVersion="29" android:targetSdkVersion="29" />
+	<application android:label="Stashr" android:theme="@style/MainTheme" android:icon="@mipmap/ic_launcher"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
